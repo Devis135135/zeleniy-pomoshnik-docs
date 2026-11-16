@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PRO версия — Зелёный помощник</title>
+    <style>
+        :root {
+            --primary-color: #2E7D32;
+            --primary-light: #E8F5E9;
+            --dark-bg: #0F231D;
+            --light-bg: #F6FBF7;
+            --text-color: #333333;
+            --text-muted: #666666;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-bg);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Шапка */
+        .hero {
+            background: linear-gradient(135deg, var(--dark-bg) 0%, #164A3B 100%);
+            color: white;
+            padding: 40px 20px;
+            border-radius: 20px;
+            text-align: center;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 25px rgba(15, 35, 29, 0.2);
+        }
+
+        .hero h1 {
+            margin: 0 0 10px 0;
+            font-size: 28px;
+            font-weight: 800;
+            letter-spacing: 1px;
+        }
+
+        .hero p {
+            margin: 0;
+            font-size: 16px;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Карточки преимуществ */
+        .features {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        }
+
+        .features h2 {
+            color: var(--primary-color);
+            margin-top: 0;
+            font-size: 20px;
+        }
+
+        .features ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .features li {
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 15px;
+            font-size: 15px;
+        }
+
+        .features li::before {
+            content: '🌿';
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-size: 16px;
+        }
+
+        /* Блок с тарифами */
+        .pricing-options {
+            background: white;
+            padding: 30px;
+            border-radius: 16px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            text-align: center;
+        }
+
+        .pricing-options h2 {
+            margin-top: 0;
+            font-size: 20px;
+            color: var(--text-color);
+            margin-bottom: 20px;
+        }
+
+        .tariffs {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .tariff {
+            flex: 1;
+            min-width: 180px;
+            background: #F8FBF8;
+            border-radius: 12px;
+            padding: 25px 15px;
+            border: 1px solid #E0E0E0;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .tariff:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .tariff.popular {
+            border: 2px solid var(--primary-color);
+            background: var(--primary-light);
+            transform: scale(1.02);
+        }
+
+        .tariff.popular:hover {
+            transform: scale(1.02) translateY(-5px);
+        }
+
+        .tariff h3 {
+            margin: 0 0 10px 0;
+            font-size: 16px;
+            color: var(--text-color);
+        }
+
+        .tariff-price {
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--primary-color);
+            margin-bottom: 5px;
+        }
+
+        .tariff-desc {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin: 0 0 15px 0;
+        }
+
+        .badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--primary-color);
+            color: white;
+            font-size: 11px;
+            padding: 4px 12px;
+            border-radius: 12px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        /* Кнопка */
+        .btn {
+            display: inline-block;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 15px;
+            transition: background-color 0.3s;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .btn:hover {
+            background-color: #1B5E20;
+        }
+
+        .tariff .btn {
+            background-color: white;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+
+        .tariff.popular .btn {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        /* Юридические ссылки */
+        .legal-links {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .legal-links a {
+            color: var(--primary-color);
+            text-decoration: none;
+            font-size: 14px;
+            margin: 0 10px;
+            font-weight: 500;
+        }
+
+        .legal-links a:hover {
+            text-decoration: underline;
+        }
+
+        /* Подвал (Реквизиты) */
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            color: var(--text-muted);
+            border-top: 1px solid #E0E0E0;
+            padding-top: 20px;
+            margin-top: 20px;
+        }
+
+        .footer p {
+            margin: 5px 0;
+        }
+
+        @media (max-width: 600px) {
+            .tariffs {
+                flex-direction: column;
+            }
+            .tariff.popular {
+                transform: none;
+            }
+            .tariff.popular:hover {
+                transform: translateY(-5px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        
+        <!-- Шапка -->
+        <div class="hero">
+            <h1>Зелёный помощник PRO</h1>
+            <p>Расширенный функционал для заботы о ваших растениях</p>
+        </div>
+
+        <!-- Описание продукта и преимущества -->
+        <div class="features">
+            <h2>Что дает PRO-версия?</h2>
+            <ul>
+                <li><strong>Неограниченное количество растений.</strong> Добавляйте в свой сад столько зеленых питомцев, сколько захотите.</li>
+                <li><strong>Все калькуляторы.</strong> Доступ к профессиональным расчетам грунта, фитоламп, удобрений и многому другому.</li>
+                <li><strong>Полный гид по уходу.</strong> Открывайте подробные инструкции для любого растения из справочника.</li>
+                <li><strong>Приоритетная поддержка.</strong> Поможем решить любой вопрос с приложением.</li>
+            </ul>
+        </div>
+
+        <!-- Блок с тарифами -->
+        <div class="pricing-options">
+            <h2>Выберите подходящий тариф</h2>
+            <div class="tariffs">
+                
+                <!-- 1 месяц -->
+                <div class="tariff">
+                    <div>
+                        <h3>1 месяц</h3>
+                        <div class="tariff-price">199 ₽</div>
+                        <p class="tariff-desc">Гибкий старт</p>
+                    </div>
+                    <a href="#download" class="btn">Выбрать</a>
+                </div>
+
+                <!-- 3 месяца (Популярный) -->
+                <div class="tariff popular">
+                    <span class="badge">Выгодно</span>
+                    <div>
+                        <h3>3 месяца</h3>
+                        <div class="tariff-price">499 ₽</div>
+                        <p class="tariff-desc">Популярный выбор</p>
+                    </div>
+                    <a href="#download" class="btn">Выбрать</a>
+                </div>
+
+                <!-- 12 месяцев -->
+                <div class="tariff">
+                    <div>
+                        <h3>12 месяцев</h3>
+                        <div class="tariff-price">1 490 ₽</div>
+                        <p class="tariff-desc">Максимальная выгода</p>
+                    </div>
+                    <a href="#download" class="btn">Выбрать</a>
+                </div>
+
+            </div>
+            <p style="font-size: 12px; color: #666; margin-top: 20px;">
+                Доступ предоставляется мгновенно после оплаты. Подписка автоматически не продлевается.
+            </p>
+        </div>
+
+        <!-- Юридические ссылки (Обязательно для модерации) -->
+        <div class="legal-links">
+            <a href="https://devis135135.github.io/zeleniy-pomoshnik-docs/offer.html" target="_blank">Публичная оферта</a>
+            <a href="https://devis135135.github.io/zeleniy-pomoshnik-docs/" target="_blank">Политика конфиденциальности</a>
+            <a href="https://devis135135.github.io/zeleniy-pomoshnik-docs/terms.html" target="_blank">Пользовательское соглашение</a>
+        </div>
+
+        <!-- Реквизиты и контакты -->
+        <div class="footer">
+            <p><strong>Служба поддержки:</strong> devis13@mail.ru</p>
+            <p>Продавец: Самозанятый Карнеенков Денис Геннадьевич</p>
+            <p>ИНН: 362705630900</p>
+            <p style="margin-top: 15px;">&copy; 2026 Зелёный помощник. Все права защищены.</p>
+        </div>
+
+    </div>
+</body>
+</html>
